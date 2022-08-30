@@ -1,24 +1,19 @@
-# README
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Features](#features)
+* [Sources](#sources)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## General info
+This project is an educative project witch aim to lear how to create an API with Rails.
 
-Things you may want to cover:
+## Technologies
+Project is created with:
+* Ruby
+* Rails
+	
+## Features
+Nothing fancy, just a basic API blog
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Sources
+This app is created through the [The Hacking Project](https://www.thehackingproject.org) bootcamp and made by [MatthiasBlc](https://github.com/MatthiasBlc).
