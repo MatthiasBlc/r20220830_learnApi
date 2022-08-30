@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show update destroy ]
-
+  before_action :set_article, only: %i[show update destroy]
+  before_action :sign_in
   # GET /articles
   def index
     @articles = Article.all
@@ -39,13 +39,18 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :content, user_id: current_user.id)
+  end
+
+  def sign_in
+    redirect_to user_path(current_user.id) if user_signed_in?
+  end
 end
