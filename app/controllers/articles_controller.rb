@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_article, only: %i[show update destroy]
-  before_action :sign_in
+  before_action :check_id, only: %i[uodate destroy]
+
   # GET /articles
   def index
     @articles = Article.all
@@ -16,6 +18,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
 
     if @article.save
       render json: @article, status: :created, location: @article
@@ -47,10 +50,10 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :content, user_id: current_user.id)
+    params.require(:article).permit(:title, :content)
   end
 
-  def sign_in
-    redirect_to user_path(current_user.id) if user_signed_in?
+  def check_id
+    render json: { message: "tu n'as rien à faire ici" }, status: :unauthorized unless current_user == @article.user
   end
 end
